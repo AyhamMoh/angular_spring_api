@@ -1,0 +1,39 @@
+<div class="container">
+
+    <h1>Ajouter un article</h1>
+
+    <form [formGroup]="formArticle" class="d-flex flex-column">
+
+        <mat-form-field>
+            <mat-label>Titre</mat-label>
+            <input matInput formControlName="titre">
+            <mat-error>
+                Le titre est obligatoire
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Auteur</mat-label>
+            <input matInput formControlName="auteur">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Contenu</mat-label>
+            <textarea matInput formControlName="contenu"></textarea>
+
+            <mat-error>
+                Le contenu est obligatoire
+            </mat-error>
+
+        </mat-form-field>
+
+        <input type="file">
+
+
+        <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">
+            Envoyer formulaire
+        </button>
+
+    </form>
+
+</div>

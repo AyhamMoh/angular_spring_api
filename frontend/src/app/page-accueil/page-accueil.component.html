@@ -1,0 +1,44 @@
+<h1>Accueil de {{nomApplication}}</h1>
+
+
+<div class="container">
+
+
+     <button mat-raised-button [routerLink]="['/edition-article']" color="primary" class="mb-2">
+        <mat-icon>add</mat-icon>Ajouter un article
+    </button>
+     
+     
+     
+    <div class="row">
+
+        <div class="col-6" *ngFor="let article of listeArticle">
+            <mat-card class="mb-2">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{article.titre}}</mat-card-title>
+                    <mat-card-subtitle *ngIf="article.auteur != null">{{article.auteur}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                    alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        {{article.contenu}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class ="gap-1 justify-content-center">
+                    <button 
+                    [routerLink]="['/edition-article', article.id]"
+                    mat-raised-button  color="accent">
+                        <mat-icon class ="m-0">edit</mat-icon>
+                        <span class = "m-2 d-none d-md-block">Modifier</span>
+                        </button>
+                    <button (click)="onClickDeleteArtricle(article.id)" mat-raised-button color = "warn">
+                        <mat-icon class ="m-0" >delete</mat-icon> 
+                        <span class = "m-2 d-none d-md-block">Supprimer</span></button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+

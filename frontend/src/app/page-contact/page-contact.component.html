@@ -1,0 +1,44 @@
+<div class="container py-5"> 
+
+<p>Contact</p> 
+
+<form [formGroup]="formContact" class="d-flex flex-column m-3"> 
+        <mat-form-field class="example-full-width"> 
+           <mat-label>Email</mat-label> 
+           <input matInput formControlName="email"> 
+           <mat-error *ngIf = "formContact.get('email')?.hasError('required')">L'email est obligatoire</mat-error> 
+            <mat-error *ngIf = "formContact.get('email')?.hasError('email')">Format invalide</mat-error> 
+        </mat-form-field> 
+    
+        <mat-form-field class="example-full-width"> 
+            <mat-label>Objet</mat-label> 
+            <input matInput formControlName="objet"> 
+           <mat-error *ngIf = "formContact.get('objet')?.hasError('required')">L'objet est obligatoire</mat-error> 
+           <mat-error *ngIf = "formContact.get('objet')?.hasError('maxlength')">{{formContact.get('objet')?.errors?.['maxlength']?.requiredLength}} caractères maximum  
+            {{formContact.get('objet')?.errors?.['maxlength']?.actualLength - formContact.get('objet')?.errors?.['maxlength']?.requiredLength}} en trop)</mat-error> 
+        </mat-form-field> 
+
+ 
+ 
+
+        <mat-form-field class="example-full-width"> 
+           <mat-label>Message</mat-label> 
+           <textarea matInput placeholder="Decrivez votre problème ..." formControlName="message"></textarea> 
+             <mat-error *ngIf = "formContact.get('message')?.hasError('required')">Le message est obligatoire</mat-error> 
+             <mat-error *ngIf = "formContact.get('message')?.hasError('maxlength')">{{formContact.get('message')?.errors?.['maxlength']?.requiredLength}} caractères maximum  
+                {{formContact.get('message')?.errors?.['maxlength']?.actualLength - formContact.get('message')?.errors?.['maxlength']?.requiredLength}} en trop)</mat-error> 
+                <mat-error *ngIf="formContact.get('message')?.hasError('minlength')">
+                   {{formContact.get('message')?.errors?.['minlength']?.requiredLength}} caractères minimum (il manque {{formContact.get('message')?.errors?.['minlength']?.requiredLength 
+                  - formContact.get('message')?.errors?.['minlength']?.actualLength}}) 
+                </mat-error>
+ 
+      </mat-form-field> 
+
+    <button mat-flat-button color="primary" (click)="onSubmit()">Envoyer formulaire</button> 
+
+</form> 
+
+ 
+ 
+
+</div> 
