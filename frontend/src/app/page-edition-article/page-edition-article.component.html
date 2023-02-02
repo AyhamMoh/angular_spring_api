@@ -27,8 +27,7 @@
 
         </mat-form-field>
 
-        <input type="file">
-
+        <app-file-selector class="my-4" [parentFormGroup] ="formArticle" fileFormControlName = "image"></app-file-selector>
 
         <button mat-raised-button type="submit" color="primary" (click)="onSubmit()">
             Envoyer formulaire

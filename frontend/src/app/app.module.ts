@@ -17,6 +17,9 @@ import { PageEditionArticleComponent } from './page-edition-article/page-edition
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FileSelectorComponent } from './file-selector/file-selector.component';
+import { FileSizePipe } from './file-size.pipe';
+import { TotalFileSizePipe } from './total-file-size.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     PageContactComponent,
     PageNotFoundComponent,
     PageEditionArticleComponent,
-    DialogSupprimerArticle
+    DialogSupprimerArticle,
+    FileSelectorComponent,
+    FileSizePipe,
+    TotalFileSizePipe
+    
   ],
   imports: [
     BrowserModule,

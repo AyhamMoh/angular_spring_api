@@ -1,0 +1,25 @@
+<div (click)="inputFile.click()" [formGroup] = "parentFormGroup" class="file-selector-container mdc-text-field d-flex align-items-center">
+    <input [formControlName]="fileFormControlName" [multiple]="multiple" (change)="onFileSelected($event)" class="d-none" #inputFile type="file">
+
+    <button mat-mini-fab color="primary">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+
+
+    <span *ngIf="fichiers.length == 0">Selectionnez un fichier</span>
+
+    <div *ngIf="fichiers.length == 1">
+        <div>{{fichiers[0].nomFichier}} ( {{fichiers[0].tailleFichier | fileSize:2 }} )</div>
+        <div><i>Date modification : {{fichiers[0].dateFichier | date:'dd/MM/yyyy hh:mm:ss'}}</i></div>
+    </div>
+
+    <div *ngIf="fichiers.length > 1">
+        {{fichiers.length}} fichiers selectionnés ({{fichiers| totalFileSize|fileSize:2}})
+    </div>
+
+
+</div>
+
+<mat-error *ngIf = "parentFormGroup.get('image')?.hasError('invalideExtension')">
+    Les fichiers "{{parentFormGroup.get('image').errors.invalideExtension.extension}}" ne sont pas valides
+</mat-error>

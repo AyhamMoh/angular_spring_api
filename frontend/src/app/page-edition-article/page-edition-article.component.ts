@@ -3,6 +3,8 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { fileValidator } from '../validators/file-validator';
+
 @Component({
   selector: 'app-page-edition-article',
   templateUrl: './page-edition-article.component.html',
@@ -12,12 +14,13 @@ export class PageEditionArticleComponent {
 
   public formArticle: FormGroup = this.formBuilder.group(
     {
-      "id":[null],
+      "id": [null],
       "titre": ["", [Validators.required]],
 
       "auteur": ["", [Validators.maxLength(50)]],
 
-      "contenu": ["", [Validators.required]]
+      "contenu": ["", [Validators.required]],
+      "image": [null, [fileValidator(["jpg", "png", "gif", "jpeg"])]]
     })
 
   constructor(
@@ -30,13 +33,16 @@ export class PageEditionArticleComponent {
   ngOnInit() {
     this.route.params.subscribe({
       next: (parametres: any) => {
-         //si il y a un parametre (cad si on est sur la page d'edition)
+        //si il y a un parametre (cad si on est sur la page d'edition)
 
-        this.http.get("http://localhost:8080/article/" + parametres.id)
-        .subscribe({
-          next:article => this.formArticle.patchValue(article),
-          error: (erreur : HttpErrorResponse) => console.log(erreur)
-        })
+        if (parametres.id) {
+
+          this.http.get("http://localhost:8080/article/" + parametres.id)
+            .subscribe({
+              next: article => this.formArticle.patchValue(article),
+              error: (erreur: HttpErrorResponse) => console.log(erreur)
+            })
+        }
       }
     })
   }

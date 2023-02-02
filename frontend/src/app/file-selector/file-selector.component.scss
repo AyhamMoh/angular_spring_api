@@ -1,0 +1,16 @@
+.file-selector-container {
+  background-color: whitesmoke;
+  padding: 1em;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+
+  .mdc-fab {
+    margin-right: 1em;
+  }
+
+  &:hover {
+    background-color: #EEE;
+    border-bottom: 1px solid #000;
+  }
+
+}
